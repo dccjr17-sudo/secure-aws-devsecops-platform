@@ -1,0 +1,11 @@
+# Copy this file to terraform.tfvars. Do not commit the copied file.
+# Use an AWS SSO/Identity Center profile rather than static access keys.
+
+aws_region   = "us-east-1"
+aws_profile  = "your-sso-profile"
+project_name = "secure-aws-devsecops-jd"
+environment  = "dev"
+
+vpc_cidr             = "10.42.0.0/16"
+public_subnet_cidrs  = ["10.42.0.0/24", "10.42.1.0/24"]
+private_subnet_cidrs = ["10.42.10.0/24", "10.42.11.0/24"]
