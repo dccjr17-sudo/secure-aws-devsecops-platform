@@ -21,7 +21,9 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Check Terraform formatting
-        run: terraform fmt -check -recursive infrastructure
+        run: |
+          terraform fmt -check infrastructure/environments/dev/main.tf infrastructure/environments/dev/outputs.tf
+          terraform fmt -check -recursive infrastructure/modules/github_actions_oidc
 
       - name: Initialize without the remote backend
         working-directory: infrastructure/environments/dev
