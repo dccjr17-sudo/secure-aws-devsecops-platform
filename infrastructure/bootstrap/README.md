@@ -4,4 +4,4 @@ Run this directory only once per AWS account/region before working in an environ
 
 The configuration creates a versioned, encrypted, non-public S3 bucket and a DynamoDB state-lock table. Both resources have Terraform `prevent_destroy` enabled to reduce accidental deletion. Removing them is a deliberate final teardown action that requires changing the configuration after all environment resources are gone.
 
-Copy `terraform.tfvars.example` to `terraform.tfvars`, make only account-appropriate changes, and keep that copied file private.
+Copy `terraform.tfvars.example` to `terraform.tfvars`, set the named AWS profile you use for the lab, make only account-appropriate changes, and keep that copied file private.

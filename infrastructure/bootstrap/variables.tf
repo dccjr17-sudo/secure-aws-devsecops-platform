@@ -1,7 +1,14 @@
 variable "aws_region" {
   description = "AWS region for Terraform state resources."
   type        = string
-  default     = "us-east-1"
+  default     = "us-west-2"
+}
+
+variable "aws_profile" {
+  description = "Named AWS CLI profile used for bootstrap. Leave null to use the SDK default credential chain."
+  type        = string
+  default     = null
+  nullable    = true
 }
 
 variable "project_name" {

@@ -3,6 +3,6 @@
 
 bucket         = "REPLACE_WITH_BOOTSTRAP_STATE_BUCKET_OUTPUT"
 key            = "environments/dev/terraform.tfstate"
-region         = "us-east-1"
+region         = "us-west-2"
 dynamodb_table = "REPLACE_WITH_BOOTSTRAP_LOCK_TABLE_OUTPUT"
 encrypt        = true

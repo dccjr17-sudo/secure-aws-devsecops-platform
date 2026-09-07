@@ -46,7 +46,7 @@ See [Phase 1 architecture](docs/architecture/phase-1-foundation.md) and [ADR-001
 
 - Install Terraform (1.6 or later) and AWS CLI v2.
 - Authenticate with AWS IAM Identity Center or an approved named AWS profile. Do **not** create or paste access keys into this repository.
-- Confirm the AWS account and region intended for the lab. `us-east-1` is the initial example only; it is not a requirement.
+- Confirm the AWS account and region intended for the lab. This project is configured for Oregon (`us-west-2`); use that same region for both bootstrap and development state.
 - Create an empty **private** GitHub repository named `secure-aws-devsecops-platform`; do not add a README, `.gitignore`, or license from GitHub because this folder already contains them.
 
 ### 2. Bootstrap encrypted remote state
@@ -56,7 +56,7 @@ The bootstrap configuration creates a versioned, private S3 bucket and a DynamoD
 ```powershell
 cd infrastructure/bootstrap
 Copy-Item terraform.tfvars.example terraform.tfvars
-# Edit terraform.tfvars: choose the region and a globally unique project slug.
+# Edit terraform.tfvars: confirm Oregon, your devsecops-lab profile, and a unique project slug.
 terraform init
 terraform fmt -recursive
 terraform validate
@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 1 — Terraform foundation scaffolded; awaiting local Terraform/AWS CLI setup and first authenticated plan.
+**Current phase:** Phase 1 — Terraform foundation deployed and reconciled in Oregon (`us-west-2`). The next phase is a small, securely containerized application.
 
 ## License
 

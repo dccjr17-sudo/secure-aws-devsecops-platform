@@ -1,7 +1,7 @@
 variable "aws_region" {
   description = "AWS region for the development environment. Match the bootstrap region."
   type        = string
-  default     = "us-east-1"
+  default     = "us-west-2"
 }
 
 variable "aws_profile" {
