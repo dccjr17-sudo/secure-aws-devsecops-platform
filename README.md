@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 1 — Terraform foundation deployed and reconciled in Oregon (`us-west-2`). The next phase is a small, securely containerized application.
+**Current phase:** Phase 2 — secure containerized application baseline built and locally validated. The next phase adds a private ECR registry and controlled image delivery.
 
 ## License
 
