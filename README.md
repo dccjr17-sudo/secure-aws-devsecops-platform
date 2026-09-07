@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 2 — secure containerized application baseline built and locally validated. The next phase adds a private ECR registry and controlled image delivery.
+**Current phase:** Phase 3 — private ECR registry Terraform source added; awaiting plan review, deployment, image push, and scan validation.
 
 ## License
 

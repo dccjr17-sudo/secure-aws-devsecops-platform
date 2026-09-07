@@ -20,3 +20,16 @@ module "network" {
     Owner              = "Portfolio"
   }
 }
+
+module "container_registry" {
+  source = "../../modules/registry"
+
+  project_name         = var.project_name
+  environment          = var.environment
+  retained_image_count = 10
+
+  tags = {
+    DataClassification = "Lab"
+    Owner              = "Portfolio"
+  }
+}
