@@ -14,7 +14,7 @@ This deliberately small application is the workload for the secure AWS DevSecOps
 Run the following commands from the repository root:
 
 ```powershell
-docker build --tag secure-aws-devsecops-app:local app
+docker buildx build --platform linux/amd64 --provenance=false --sbom=false --load --tag secure-aws-devsecops-app:local app
 docker run --rm --publish 8080:8080 --name secure-aws-devsecops-app secure-aws-devsecops-app:local
 ```
 
@@ -36,4 +36,5 @@ docker run --rm --entrypoint python secure-aws-devsecops-app:local -m unittest d
 - The service listens on port 8080, avoiding privileged ports.
 - Dependencies are installed without a pip cache.
 - The image has a built-in health check and does not embed credentials or environment-specific configuration.
-- The next phase will add image scanning and a private ECR repository.
+- The runtime uses the minimal Alpine-based Python image to reduce unused operating-system packages. Build attestations are disabled for this local Basic-Scanning workflow so ECR receives a scan-compatible single-platform manifest; CI provenance will be added in Phase 4.
+- Phase 3 adds ECR image scanning and a private image registry.

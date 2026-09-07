@@ -26,5 +26,6 @@ Before sharing an image, inspect browser tabs, address bars, account menus, brea
 | --- | --- |
 | `phase-1-validation.md` | Terraform formatting/validation results and an explanation of the planned network |
 | `phase-2-container-validation.md` | Local build, health check, non-root verification |
+| `phase-3-image-registry-validation.md` | Private ECR publication, immutable-tag, scan, and finding-triage evidence |
 | `phase-4-pipeline-validation.md` | Pull-request checks and OIDC role assumption evidence |
 | `phase-6-detection-validation.md` | Controlled security event, finding, and remediation |

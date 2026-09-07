@@ -17,3 +17,13 @@ output "vpc_flow_log_group_name" {
   description = "CloudWatch log group receiving VPC Flow Logs."
   value       = module.network.flow_log_group_name
 }
+
+output "ecr_repository_name" {
+  description = "Private ECR repository name."
+  value       = module.container_registry.repository_name
+}
+
+output "ecr_repository_url" {
+  description = "Private ECR repository URL for image push operations."
+  value       = module.container_registry.repository_url
+}
