@@ -35,9 +35,9 @@ Build and document a secure AWS application platform that demonstrates infrastru
 
 ### Phase 4 — CI/CD through GitHub Actions
 
-**Build:** Pull-request validation and controlled deployment workflows using GitHub-to-AWS OIDC federation.
+**Build:** Pull-request validation and controlled image-publication workflows using GitHub-to-AWS OIDC federation.
 
-**Exit criteria:** No long-lived AWS secret exists in GitHub. A pull request runs formatting, tests, and policy checks; deployment requires an intentional branch/environment gate.
+**Exit criteria:** No long-lived AWS secret exists in GitHub. A pull request runs formatting, configuration validation, tests, and an image build; image publication requires an intentional main-branch gate.
 
 ### Phase 5 — Security scanning and policy gates
 

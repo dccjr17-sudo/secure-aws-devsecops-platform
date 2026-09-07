@@ -33,3 +33,21 @@ module "container_registry" {
     Owner              = "Portfolio"
   }
 }
+
+module "github_actions_oidc" {
+  source = "../../modules/github_actions_oidc"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  # GitHub repositories created after July 15, 2026 use an immutable OIDC
+  # subject format. This exact subject permits only the main branch of this
+  # repository to request the publishing role.
+  github_oidc_subject = "repo:dccjr17-sudo@233174618/secure-aws-devsecops-platform@1359570339:ref:refs/heads/main"
+  ecr_repository_arn  = module.container_registry.repository_arn
+
+  tags = {
+    DataClassification = "Lab"
+    Owner              = "Portfolio"
+  }
+}

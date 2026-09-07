@@ -13,7 +13,7 @@ The goal is to turn cloud-security knowledge into demonstrable engineering capab
 | 1 — foundation | Version-controlled Terraform, remote state, and a secure network baseline | Terraform, AWS IAM, S3, DynamoDB, VPC, CloudWatch Logs |
 | 2 — application | A small containerized application with a repeatable local build | Docker, Python or Node.js |
 | 3 — image delivery | Private image registry and immutable, scanned image publication | Amazon ECR |
-| 4 — CI/CD | Automated validation, scanning, and deployment workflow | GitHub Actions, OIDC |
+| 4 — CI/CD | Automated validation and controlled image publication | GitHub Actions, OIDC |
 | 5 — DevSecOps controls | Security checks at code, dependency, container, and IaC layers | Gitleaks, Trivy, Checkov, CodeQL |
 | 6 — secrets and detection | Runtime secrets, audit logs, threat detection, and alerting | Secrets Manager, KMS, CloudTrail, GuardDuty, Security Hub |
 | 7 — Kubernetes | A hardened, observable EKS deployment path | EKS, Kubernetes, Helm, network policies |
@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 3 — private ECR registry and scan-on-push policy deployed; application image published, scanned, and triaged. Phase 4 will add GitHub Actions with a least-privilege AWS OIDC role.
+**Current phase:** Phase 4 — GitHub Actions validation and a least-privilege AWS OIDC publishing role are being implemented. Phase 3 delivered the private ECR registry, scan-on-push policy, and image triage baseline.
 
 ## License
 

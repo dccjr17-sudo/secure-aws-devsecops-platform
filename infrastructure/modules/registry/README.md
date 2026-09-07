@@ -8,4 +8,4 @@ Creates the Phase 3 ECR repository for the application image.
 - AES-256 server-side encryption protects images at rest.
 - Lifecycle policy retains a bounded number of recent images to control storage growth.
 
-The repository does not yet contain a CI/CD permissions policy. That role will be created in Phase 4 using GitHub OIDC and least privilege.
+Phase 4 adds a separate, least-privilege GitHub OIDC role that can publish images to this repository only.

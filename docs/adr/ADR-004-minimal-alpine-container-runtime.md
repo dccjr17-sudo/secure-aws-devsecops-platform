@@ -12,7 +12,7 @@ The first ECR image scan of the Debian-based `python:3.13-slim` runtime reported
 
 - Use `python:3.13-alpine` as the runtime base image for this small, pure-Python service.
 - Build a single Linux/amd64 image manifest for the Basic Scanning validation path.
-- Disable local build provenance and SBOM attestations for that compatibility path; Phase 4 CI/CD will add supply-chain provenance through a scanner-compatible publication workflow.
+- Disable build provenance and SBOM attestations in the local and Phase 4 publication paths so ECR Basic Scanning receives a compatible single-platform manifest. Revisit independent provenance when Phase 5 adds broader supply-chain controls.
 - Continue to run the health check and unit tests after each base-image change.
 
 ## Consequences

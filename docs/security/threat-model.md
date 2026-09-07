@@ -5,7 +5,7 @@ This is a living, lightweight threat model. It identifies what the first phases 
 | Asset or boundary | Primary risk | Initial control | Later validation |
 | --- | --- | --- | --- |
 | Git repository | A secret, account detail, or unsafe configuration is committed | Private repository, `.gitignore`, review checklist, no real credentials in source | Secret scanning blocks a deliberate safe test pattern (Phase 5) |
-| GitHub-to-AWS deployment boundary | Long-lived cloud credentials are leaked or overprivileged | No AWS keys in GitHub; deployment is deferred until OIDC is defined | OIDC role trust policy is limited to this repository and deployment environment (Phase 4) |
+| GitHub-to-AWS delivery boundary | Long-lived cloud credentials are leaked or overprivileged | No AWS keys in GitHub; publishing is deferred until OIDC is defined | OIDC role trust policy is limited to this immutable repository identity and `main` (Phase 4) |
 | Terraform state | Resource metadata or secrets are exposed, corrupted, or overwritten | Versioned non-public S3 state, encryption, DynamoDB lock table | Restore and concurrent-change behavior is documented (Phase 1) |
 | AWS identity | Human or automation access exceeds the lab task | Named profile/Identity Center for humans; role-based access for automation | IAM policy review and access-denied tests (Phases 3–4) |
 | VPC and workloads | Unnecessary inbound exposure or unobserved traffic | Private application subnets begin without a default internet route; Flow Logs enabled | Security-group, ingress, and egress tests (Phase 3) |
