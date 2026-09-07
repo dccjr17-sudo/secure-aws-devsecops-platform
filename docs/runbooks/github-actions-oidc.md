@@ -26,10 +26,11 @@ Do not continue if the plan changes existing VPC, registry, state, or unrelated 
 
 ## 2. Add the one GitHub Actions variable
 
-After the apply succeeds, obtain the role ARN locally:
+After the apply succeeds, obtain the role ARN and the exact repository name locally:
 
 ```powershell
 terraform output -raw github_actions_ecr_publish_role_arn
+terraform output -raw ecr_repository_name
 ```
 
 In GitHub, open **Settings → Secrets and variables → Actions → Variables**, then create this repository variable:
@@ -37,6 +38,7 @@ In GitHub, open **Settings → Secrets and variables → Actions → Variables**
 | Name | Value |
 | --- | --- |
 | `AWS_ROLE_TO_ASSUME` | the Terraform output from the command above |
+| `ECR_REPOSITORY` | the `ecr_repository_name` Terraform output |
 
 The role ARN is an identifier, not a credential. Do not put access keys, secrets, tokens, or passwords in GitHub Actions variables or secrets.
 
@@ -53,5 +55,5 @@ The workflow intentionally refuses to publish from a feature branch. Do not weak
 ## Troubleshooting
 
 - **AWS role assumption denied:** confirm the run was manually started from `main` and the `AWS_ROLE_TO_ASSUME` variable exactly matches the Terraform output. Review the exact GitHub OIDC subject condition; do not replace it with a wildcard.
-- **ECR push denied:** confirm the repository name has not changed and Terraform applied the narrow ECR publishing policy. Do not attach broad policies such as `AdministratorAccess`.
+- **ECR push denied:** confirm `ECR_REPOSITORY` exactly matches the current `ecr_repository_name` Terraform output and that Terraform applied the narrow ECR publishing policy. Do not attach broad policies such as `AdministratorAccess`.
 - **Pull-request check fails during Terraform init:** it should run `terraform init -backend=false`; it must not receive remote-state or AWS credentials.
