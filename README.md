@@ -12,7 +12,7 @@ The goal is to turn cloud-security knowledge into demonstrable engineering capab
 | --- | --- | --- |
 | 1 — foundation | Version-controlled Terraform, remote state, and a secure network baseline | Terraform, AWS IAM, S3, DynamoDB, VPC, CloudWatch Logs |
 | 2 — application | A small containerized application with a repeatable local build | Docker, Python or Node.js |
-| 3 — image delivery | Private image registry and least-privilege image publishing | Amazon ECR, IAM |
+| 3 — image delivery | Private image registry and immutable, scanned image publication | Amazon ECR |
 | 4 — CI/CD | Automated validation, scanning, and deployment workflow | GitHub Actions, OIDC |
 | 5 — DevSecOps controls | Security checks at code, dependency, container, and IaC layers | Gitleaks, Trivy, Checkov, CodeQL |
 | 6 — secrets and detection | Runtime secrets, audit logs, threat detection, and alerting | Secrets Manager, KMS, CloudTrail, GuardDuty, Security Hub |
@@ -35,7 +35,7 @@ See [Phase 1 architecture](docs/architecture/phase-1-foundation.md) and [ADR-001
 ├── infrastructure/
 │   ├── bootstrap/                # One-time Terraform remote-state resources
 │   ├── environments/dev/         # Development environment composition and backend config
-│   └── modules/network/          # Reusable VPC and flow-log module
+│   └── modules/                  # Reusable VPC, flow-log, and registry modules
 ├── scripts/                      # Safe, repeatable helper scripts
 └── .github/workflows/            # CI/CD workflows (added in Phase 4)
 ```
@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 3 — private ECR registry Terraform source added; awaiting plan review, deployment, image push, and scan validation.
+**Current phase:** Phase 3 — private ECR registry and scan-on-push policy deployed; application image published, scanned, and triaged. Phase 4 will add GitHub Actions with a least-privilege AWS OIDC role.
 
 ## License
 

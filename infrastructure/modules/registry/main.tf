@@ -24,6 +24,22 @@ resource "aws_ecr_repository" "this" {
   })
 }
 
+# ECR basic scanning is governed by a registry-level policy. Restrict the
+# scan-on-push rule to this project's repository so unrelated repositories
+# remain unchanged.
+resource "aws_ecr_registry_scanning_configuration" "this" {
+  scan_type = "BASIC"
+
+  rule {
+    scan_frequency = "SCAN_ON_PUSH"
+
+    repository_filter {
+      filter      = local.repository_name
+      filter_type = "WILDCARD"
+    }
+  }
+}
+
 resource "aws_ecr_lifecycle_policy" "this" {
   repository = aws_ecr_repository.this.name
 

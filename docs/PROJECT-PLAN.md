@@ -29,9 +29,9 @@ Build and document a secure AWS application platform that demonstrates infrastru
 
 ### Phase 3 — Image registry and deployment target
 
-**Build:** Private ECR repository, image scanning configuration, IAM roles, and an initially simple managed deployment target.
+**Build:** Private ECR repository, immutable tags, a repository-scoped image scanning configuration, and documented image publication and validation. The least-privilege GitHub OIDC role is introduced in Phase 4.
 
-**Exit criteria:** A scoped role can publish an image; image scanning results are reviewed and documented.
+**Exit criteria:** A private repository receives an immutable application image; image scanning results are reviewed and documented, including any verified attribution mismatch or accepted residual risk.
 
 ### Phase 4 — CI/CD through GitHub Actions
 
