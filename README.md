@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 5 — in progress. Pull-request and image-publication workflows now require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session.
+**Current phase:** Phase 5 — complete. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. Phase 6 will add managed secrets, audit logging, and cloud detection.
 
 ## License
 

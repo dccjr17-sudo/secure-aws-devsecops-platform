@@ -12,4 +12,20 @@
 
 ## Pull-request results
 
-Add the sanitized Phase 5 pull-request check summary here after the workflow completes. Record gate names and result states only; do not upload raw logs or values that resemble credentials.
+Phase 5 pull-request validation passed all seven checks:
+
+1. Secret scan
+2. Static application security scan
+3. Python dependency vulnerability audit
+4. Terraform security policy checks
+5. Container vulnerability scan
+6. Terraform formatting and validation
+7. Application tests and image build
+
+The first secret-scan attempt exposed a workflow-permission defect rather than a leak: the scanner could not read pull-request commit metadata. The workflow was corrected with read-only `pull-requests: read` permission, then the full validation passed. No write, AWS, or OIDC permission was added to the security-gate workflow.
+
+## Publication-path result
+
+A manually initiated `main` publication successfully ran all five reusable security gates before the separate build-and-publish job. The final job then used the existing short-lived GitHub OIDC role to publish an immutable ECR image. This validates that direct image publication cannot bypass the Phase 5 controls.
+
+Only sanitized gate names, states, and remediation details are retained here; raw logs and values resembling credentials are not committed.

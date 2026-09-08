@@ -47,7 +47,7 @@ Build and document a secure AWS application platform that demonstrates infrastru
 
 **Exit criteria:** Critical findings block the pipeline or have a documented, time-bounded exception. One intentionally introduced safe test finding is detected and remediated.
 
-**Status:** In progress — security gates are implemented on the Phase 5 branch. The dependency baseline found Flask 3.1.2 vulnerable to `PYSEC-2026-2151`; the branch upgrades it to 3.1.3 before validation.
+**Status:** Complete — pull-request validation passed all seven checks, including the five security gates. The dependency baseline found Flask 3.1.2 vulnerable to `PYSEC-2026-2151`; it was upgraded to 3.1.3 and retested with no known vulnerabilities. A manually initiated `main` publication ran the same security gates before successfully publishing an immutable ECR image through the Phase 4 OIDC role. The safe synthetic secret test was detected and removed without being committed.
 
 ### Phase 6 — Secrets, audit, and detection
 
