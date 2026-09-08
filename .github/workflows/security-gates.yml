@@ -8,6 +8,7 @@ on:
 # publish job may obtain a short-lived AWS session after these gates succeed.
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   secrets:
