@@ -12,8 +12,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  security:
+    name: Required security gates
+    uses: ./.github/workflows/security-gates.yml
+    permissions:
+      contents: read
+
   publish:
     name: Build and publish immutable image
+    needs: security
     # The workflow must be deliberately started from main. AWS independently
     # enforces the same branch restriction in the OIDC role trust policy.
     if: github.ref == 'refs/heads/main'
@@ -22,10 +29,10 @@ jobs:
 
     steps:
       - name: Check out main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Configure short-lived AWS credentials
-        uses: aws-actions/configure-aws-credentials@v5
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ vars.AWS_ROLE_TO_ASSUME }}
           aws-region: us-west-2

@@ -8,6 +8,12 @@ permissions:
   contents: read
 
 jobs:
+  security:
+    name: Required security gates
+    uses: ./.github/workflows/security-gates.yml
+    permissions:
+      contents: read
+
   terraform:
     name: Terraform formatting and validation
     runs-on: ubuntu-24.04
@@ -15,10 +21,10 @@ jobs:
 
     steps:
       - name: Check out the pull request
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v4
 
       - name: Check Terraform formatting
         run: |
@@ -40,10 +46,10 @@ jobs:
 
     steps:
       - name: Check out the pull request
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
 
