@@ -29,4 +29,5 @@ Before sharing an image, inspect browser tabs, address bars, account menus, brea
 | `phase-3-image-registry-validation.md` | Private ECR publication, immutable-tag, scan, and finding-triage evidence |
 | `phase-4-pipeline-validation.md` | Pull-request checks and OIDC role assumption evidence |
 | `phase-5-security-gates-validation.md` | Security-gate results, dependency remediation, and safe secret-scanner demonstration |
+| `phase-6-detection-validation.md` | Managed-configuration boundary, audit logging, and controlled-finding validation plan |
 | `phase-6-detection-validation.md` | Controlled security event, finding, and remediation |

@@ -30,8 +30,9 @@ jobs:
 
       - name: Check Terraform formatting
         run: |
-          terraform fmt -check infrastructure/environments/dev/main.tf infrastructure/environments/dev/outputs.tf
+          terraform fmt -check -recursive infrastructure/environments/dev
           terraform fmt -check -recursive infrastructure/modules/github_actions_oidc
+          terraform fmt -check -recursive infrastructure/modules/security_observability
 
       - name: Initialize without the remote backend
         working-directory: infrastructure/environments/dev

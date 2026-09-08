@@ -61,3 +61,42 @@ variable "flow_log_retention_days" {
     error_message = "flow_log_retention_days must be between 7 and 3653."
   }
 }
+
+variable "audit_log_retention_days" {
+  description = "Number of days to retain CloudTrail audit objects in the Phase 6 dedicated S3 bucket."
+  type        = number
+  default     = 90
+
+  validation {
+    condition     = var.audit_log_retention_days >= 90 && var.audit_log_retention_days <= 3653
+    error_message = "audit_log_retention_days must be between 90 and 3653."
+  }
+}
+
+variable "secret_recovery_window_in_days" {
+  description = "Recovery period before the managed application configuration secret is permanently deleted."
+  type        = number
+  default     = 7
+
+  validation {
+    condition     = var.secret_recovery_window_in_days >= 7 && var.secret_recovery_window_in_days <= 30
+    error_message = "secret_recovery_window_in_days must be between 7 and 30."
+  }
+}
+
+variable "kms_key_deletion_window_in_days" {
+  description = "Recovery period before the Phase 6 customer-managed KMS key is permanently deleted."
+  type        = number
+  default     = 7
+
+  validation {
+    condition     = var.kms_key_deletion_window_in_days >= 7 && var.kms_key_deletion_window_in_days <= 30
+    error_message = "kms_key_deletion_window_in_days must be between 7 and 30."
+  }
+}
+
+variable "enable_threat_detection_services" {
+  description = "Explicit opt-in for GuardDuty and Security Hub after reviewing their free-trial and ongoing charges."
+  type        = bool
+  default     = false
+}

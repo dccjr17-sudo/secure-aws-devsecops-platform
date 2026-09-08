@@ -32,3 +32,28 @@ output "github_actions_ecr_publish_role_arn" {
   description = "Configure this value as the AWS_ROLE_TO_ASSUME GitHub Actions repository variable."
   value       = module.github_actions_oidc.role_arn
 }
+
+output "application_configuration_secret_name" {
+  description = "Set this name as APP_CONFIG_SECRET_ID only in the eventual runtime environment."
+  value       = module.security_observability.application_configuration_secret_name
+}
+
+output "runtime_configuration_read_policy_arn" {
+  description = "Attach this least-privilege policy to the workload identity created in a later deployment phase."
+  value       = module.security_observability.runtime_configuration_read_policy_arn
+}
+
+output "audit_log_bucket_name" {
+  description = "Private S3 bucket receiving the Phase 6 CloudTrail management-event trail."
+  value       = module.security_observability.audit_log_bucket_name
+}
+
+output "audit_trail_name" {
+  description = "Name of the multi-region CloudTrail management-event trail."
+  value       = module.security_observability.audit_trail_name
+}
+
+output "guardduty_detector_id" {
+  description = "GuardDuty detector ID only when enable_threat_detection_services is true."
+  value       = module.security_observability.guardduty_detector_id
+}

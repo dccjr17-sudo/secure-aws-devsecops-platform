@@ -51,3 +51,19 @@ module "github_actions_oidc" {
     Owner              = "Portfolio"
   }
 }
+
+module "security_observability" {
+  source = "../../modules/security_observability"
+
+  project_name                     = var.project_name
+  environment                      = var.environment
+  audit_log_retention_days         = var.audit_log_retention_days
+  secret_recovery_window_in_days   = var.secret_recovery_window_in_days
+  kms_key_deletion_window_in_days  = var.kms_key_deletion_window_in_days
+  enable_threat_detection_services = var.enable_threat_detection_services
+
+  tags = {
+    DataClassification = "Lab"
+    Owner              = "Portfolio"
+  }
+}

@@ -55,6 +55,8 @@ Build and document a secure AWS application platform that demonstrates infrastru
 
 **Exit criteria:** Application configuration comes from a managed secret rather than source control; a controlled security event is generated, found, and explained.
 
+**Status:** In progress — Terraform creates an empty KMS-encrypted configuration secret, a narrow future-runtime policy, and a dedicated CloudTrail trail and bucket. GuardDuty and Security Hub are default-off explicit opt-ins because their trials can become billable. The apply and controlled-finding evidence remain outstanding.
+
 ### Phase 7 — Kubernetes/EKS
 
 **Build:** EKS cluster and workload deployment, namespace/RBAC strategy, admission and image controls, network segmentation, centralized logging, and rollback guidance.
