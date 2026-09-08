@@ -4,6 +4,7 @@ Phase 4 adds two deliberately separate workflows, and Phase 5 adds a reusable se
 
 - `pull-request-validation.yml` runs Terraform formatting/configuration validation, Python unit tests, and a local image build for every pull request targeting `main`. It has no AWS permissions and cannot request an OIDC token.
 - `security-gates.yml` runs Gitleaks, Semgrep, pip-audit, selected Checkov controls, and Trivy. It has only read access and cannot request an AWS OIDC token. Pull requests and image publication both call it.
+- Pull-request validation also formats and validates the environment composition plus the OIDC and security-observability Terraform modules. It still has no AWS permissions.
 - `publish-ecr-image.yml` is a manually dispatched workflow. It can run only from `main`, waits for the security gates, receives a short-lived AWS session through GitHub OIDC, and publishes an immutable commit-SHA image tag to this project's private ECR repository.
 
 The publishing workflow reads two GitHub **Actions variables**:

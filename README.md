@@ -22,7 +22,7 @@ Detailed scope and success criteria are in [docs/PROJECT-PLAN.md](docs/PROJECT-P
 
 ## Architecture direction
 
-Phase 1 establishes a two-AZ VPC with public and private application subnets. No workloads are exposed yet. Later phases will deploy a small application through a private ECR registry, use GitHub Actions with AWS OIDC instead of long-lived AWS keys, and move from a managed container deployment to EKS only after the pipeline, scanning, logging, and access controls are in place.
+Phase 1 establishes a two-AZ VPC with public and private application subnets. No workloads are exposed yet. The platform now has a private ECR registry, GitHub Actions with AWS OIDC instead of long-lived AWS keys, and layered delivery security gates. Phase 6 is adding managed runtime configuration, a KMS-backed CloudTrail audit trail, and an explicitly opted-in threat-detection exercise before any workload deployment or EKS decision.
 
 See [Phase 1 architecture](docs/architecture/phase-1-foundation.md) and [ADR-001](docs/adr/ADR-001-terraform-state-and-layout.md).
 
@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 5 — complete. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. Phase 6 will add managed secrets, audit logging, and cloud detection.
+**Current phase:** Phase 6 — in progress. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. Phase 6 adds an empty managed-secret container, a KMS-backed CloudTrail audit trail, and an explicit opt-in for GuardDuty and Security Hub so service trials are never enabled accidentally.
 
 ## License
 

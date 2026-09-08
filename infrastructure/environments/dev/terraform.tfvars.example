@@ -9,3 +9,9 @@ environment  = "dev"
 vpc_cidr             = "10.42.0.0/16"
 public_subnet_cidrs  = ["10.42.0.0/24", "10.42.1.0/24"]
 private_subnet_cidrs = ["10.42.10.0/24", "10.42.11.0/24"]
+
+# Phase 6 records management events for 90 days by default. GuardDuty and
+# Security Hub remain disabled until you deliberately opt in after reviewing
+# their trial and ongoing charges; see docs/runbooks/secrets-audit-detection.md.
+audit_log_retention_days         = 90
+enable_threat_detection_services = false
