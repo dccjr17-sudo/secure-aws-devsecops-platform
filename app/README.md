@@ -39,3 +39,4 @@ docker run --rm --entrypoint python secure-aws-devsecops-app:local -m unittest d
 - The runtime uses the minimal Alpine-based Python image to reduce unused operating-system packages. Build attestations remain disabled in local and Phase 4 publishing so ECR Basic Scanning receives a scan-compatible single-platform manifest; independent provenance will be revisited with the Phase 5 supply-chain controls.
 - Phase 3 adds ECR image scanning and a private image registry.
 - Phase 4 uses GitHub Actions to repeat the unit tests and build, then manually publishes an immutable `sha-<commit>` image through a short-lived OIDC role on `main`.
+- Phase 5 requires secret, static-analysis, dependency, Terraform-policy, and Critical container-vulnerability gates before a pull request can merge or an image can publish. See the [security-gates runbook](../docs/runbooks/security-gates.md).

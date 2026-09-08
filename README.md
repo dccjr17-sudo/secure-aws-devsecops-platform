@@ -14,7 +14,7 @@ The goal is to turn cloud-security knowledge into demonstrable engineering capab
 | 2 — application | A small containerized application with a repeatable local build | Docker, Python or Node.js |
 | 3 — image delivery | Private image registry and immutable, scanned image publication | Amazon ECR |
 | 4 — CI/CD | Automated validation and controlled image publication | GitHub Actions, OIDC |
-| 5 — DevSecOps controls | Security checks at code, dependency, container, and IaC layers | Gitleaks, Trivy, Checkov, CodeQL |
+| 5 — DevSecOps controls | Security checks at code, dependency, container, and IaC layers | Gitleaks, Semgrep, Trivy, Checkov |
 | 6 — secrets and detection | Runtime secrets, audit logs, threat detection, and alerting | Secrets Manager, KMS, CloudTrail, GuardDuty, Security Hub |
 | 7 — Kubernetes | A hardened, observable EKS deployment path | EKS, Kubernetes, Helm, network policies |
 
@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 4 — complete. Pull-request validation runs without AWS access, and a manually initiated main-branch workflow publishes an immutable ECR image through a least-privilege GitHub OIDC role. Phase 5 will add security scanning and policy gates.
+**Current phase:** Phase 5 — in progress. Pull-request and image-publication workflows now require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session.
 
 ## License
 
