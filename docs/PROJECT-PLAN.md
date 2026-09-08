@@ -39,6 +39,8 @@ Build and document a secure AWS application platform that demonstrates infrastru
 
 **Exit criteria:** No long-lived AWS secret exists in GitHub. A pull request runs formatting, configuration validation, tests, and an image build; image publication requires an intentional main-branch gate.
 
+**Status:** Complete — pull-request validation passed, a manually initiated main-branch workflow published an immutable ECR image through GitHub OIDC, and the resulting scan was reviewed.
+
 ### Phase 5 — Security scanning and policy gates
 
 **Build:** Secret scanning, SAST, dependency scanning, IaC scanning, container scanning, and findings triage documentation.

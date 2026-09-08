@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 4 — GitHub Actions validation and a least-privilege AWS OIDC publishing role are being implemented. Phase 3 delivered the private ECR registry, scan-on-push policy, and image triage baseline.
+**Current phase:** Phase 4 — complete. Pull-request validation runs without AWS access, and a manually initiated main-branch workflow publishes an immutable ECR image through a least-privilege GitHub OIDC role. Phase 5 will add security scanning and policy gates.
 
 ## License
 
