@@ -10,8 +10,8 @@ This is a living, lightweight threat model. It identifies what the first phases 
 | AWS identity | Human or automation access exceeds the lab task | Named profile/Identity Center for humans; role-based access for automation | IAM policy review and access-denied tests (Phases 3–4) |
 | VPC and workloads | Unnecessary inbound exposure or unobserved traffic | Private application subnets begin without a default internet route; Flow Logs enabled | Security-group, ingress, and egress tests (Phase 3) |
 | Container supply chain | Vulnerable or tampered code reaches runtime | Small non-root image, private registry, and layered PR/publish security gates | Semgrep, pip-audit, Checkov, and Trivy block configured risks before publication (Phase 5) |
-| Application configuration | Secrets are embedded in code, image layers, workflow logs, or Terraform state | An empty KMS-encrypted Secrets Manager container; value added outside Terraform | Future workload role receives a one-secret, Secrets Manager-only decrypt policy; application configuration path is unit tested (Phase 6) |
-| Detection and response | Suspicious activity is missed or cannot be investigated | VPC Flow Logs plus a KMS-encrypted, integrity-validated multi-region CloudTrail management trail | An explicitly opted-in GuardDuty sample finding is generated, located, and explained; Security Hub availability is confirmed (Phase 6) |
+| Application configuration | Secrets are embedded in code, image layers, workflow logs, or Terraform state | An empty KMS-encrypted Secrets Manager container; value added outside Terraform | The app path is unit tested; Phase 7 attaches the one-secret, Secrets Manager-only decrypt policy to the workload identity |
+| Detection and response | Suspicious activity is missed or cannot be investigated | VPC Flow Logs plus a KMS-encrypted, integrity-validated multi-region CloudTrail management trail | A controlled GuardDuty `Exfiltration:S3/MaliciousIPCaller` sample finding (severity 8.0) was generated, located, explained, and followed by removal of temporary detection services (Phase 6) |
 
 ## Assumptions and out of scope
 

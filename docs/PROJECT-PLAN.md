@@ -55,7 +55,7 @@ Build and document a secure AWS application platform that demonstrates infrastru
 
 **Exit criteria:** Application configuration comes from a managed secret rather than source control; a controlled security event is generated, found, and explained.
 
-**Status:** In progress — Terraform creates an empty KMS-encrypted configuration secret, a narrow future-runtime policy, and a dedicated CloudTrail trail and bucket. GuardDuty and Security Hub are default-off explicit opt-ins because their trials can become billable. The apply and controlled-finding evidence remain outstanding.
+**Status:** Complete — the KMS-encrypted configuration-secret container, narrow future-runtime policy, and dedicated CloudTrail trail and bucket were applied without changing existing resources. A controlled GuardDuty `Exfiltration:S3/MaliciousIPCaller` sample finding with severity 8.0 was generated, interpreted as test data, and followed by removal of the two temporary detection services. The Phase 7 workload identity will attach the prepared policy and provide the live runtime environment for `APP_CONFIG_SECRET_ID`.
 
 ### Phase 7 — Kubernetes/EKS
 
