@@ -63,7 +63,7 @@ Build and document a secure AWS application platform that demonstrates infrastru
 
 **Exit criteria:** The application deploys through CI/CD to EKS; access paths, security controls, operational evidence, and teardown steps are documented.
 
-**Status:** In progress — the first, cost-gated foundation slice adds private EKS workers, one deliberately temporary egress path, EKS control-plane logs, access-entry authentication, and a Pod Identity role that can receive only the Phase 6 runtime secret-read policy. No EKS resources are created unless the ignored local Terraform variables explicitly opt in.
+**Status:** In progress — the first, cost-gated foundation slice adds private EKS workers, one deliberately temporary egress path, EKS control-plane logs, access-entry authentication, and a Pod Identity role that can receive only the Phase 6 runtime secret-read policy. The workload slice adds a restricted namespace, dedicated service account, immutable-image deployment helper, internal-only service, health probes, and a network policy. No EKS resources are created unless the ignored local Terraform variables explicitly opt in.
 
 ## Definition of done for every phase
 
