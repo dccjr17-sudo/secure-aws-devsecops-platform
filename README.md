@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 7 — foundation in progress. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. The Phase 6 baseline keeps secret values out of Terraform, records management events in CloudTrail, and used an explicitly opted-in GuardDuty/Security Hub test that was removed after validation. Phase 7 prepares a private EKS platform and attaches the prepared secret-read policy only to the named application workload identity when the user explicitly enables the lab.
+**Current phase:** Phase 7 — Kubernetes workload delivery in progress. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. The Phase 6 baseline keeps secret values out of Terraform, records management events in CloudTrail, and used an explicitly opted-in GuardDuty/Security Hub test that was removed after validation. Phase 7 prepares a private EKS platform and attaches the prepared secret-read policy only to the named application workload identity when the user explicitly enables the lab. The application manifests use a restricted namespace, internal service, health probes, a dedicated service account, immutable ECR tags, and a network policy.
 
 ## License
 

@@ -43,11 +43,22 @@ Creation can take several minutes. The next Phase 7 slice will add the workload 
 
 ## Teardown
 
-After the live validation and evidence collection are complete, destroy the foundation from the same directory:
+After the live validation and evidence collection are complete, do **not** use `terraform destroy` or `terraform plan -destroy`: those commands would target every Terraform-managed Phase 1–7 resource in this environment.
 
-```powershell
-terraform plan -destroy -out=destroy.tfplan
-terraform apply destroy.tfplan
+Instead, edit the ignored local `terraform.tfvars` file and turn off only the Phase 7 module:
+
+```hcl
+enable_eks_foundation = false
 ```
 
-Review the destroy plan carefully. It should remove the Phase 7 EKS resources and restore the private subnet route tables to their original no-default-egress state. It must not remove the Phase 1–6 baseline.
+Then create a normal plan from the same directory:
+
+```powershell
+terraform plan -out=phase7-teardown.tfplan
+```
+
+Review the plan carefully. It should remove only the Phase 7 EKS resources and restore the private subnet route tables to their original no-default-egress state. It must not remove the Phase 1–6 baseline. Only then apply it:
+
+```powershell
+terraform apply phase7-teardown.tfplan
+```
