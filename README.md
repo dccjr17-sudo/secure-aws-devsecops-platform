@@ -22,7 +22,7 @@ Detailed scope and success criteria are in [docs/PROJECT-PLAN.md](docs/PROJECT-P
 
 ## Architecture direction
 
-Phase 1 establishes a two-AZ VPC with public and private application subnets. No workloads are exposed yet. The platform now has a private ECR registry, GitHub Actions with AWS OIDC instead of long-lived AWS keys, layered delivery security gates, a managed configuration boundary, and an integrity-validated CloudTrail audit trail. Phase 6 also proved the detection path with a controlled GuardDuty finding before any workload deployment or EKS decision.
+Phase 1 establishes a two-AZ VPC with public and private application subnets. No workloads are exposed yet. The platform now has a private ECR registry, GitHub Actions with AWS OIDC instead of long-lived AWS keys, layered delivery security gates, a managed configuration boundary, and an integrity-validated CloudTrail audit trail. The Phase 7 foundation keeps Kubernetes workers private, captures control-plane audit logs, and uses an opt-in cost gate before any EKS resources can be created.
 
 See [Phase 1 architecture](docs/architecture/phase-1-foundation.md) and [ADR-001](docs/adr/ADR-001-terraform-state-and-layout.md).
 
@@ -95,7 +95,7 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
-**Current phase:** Phase 6 — complete. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. The Phase 6 baseline keeps secret values out of Terraform, records management events in CloudTrail, and used an explicitly opted-in GuardDuty/Security Hub test that was removed after validation. Phase 7 will attach the prepared secret-read policy to a real workload identity.
+**Current phase:** Phase 7 — foundation in progress. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. The Phase 6 baseline keeps secret values out of Terraform, records management events in CloudTrail, and used an explicitly opted-in GuardDuty/Security Hub test that was removed after validation. Phase 7 prepares a private EKS platform and attaches the prepared secret-read policy only to the named application workload identity when the user explicitly enables the lab.
 
 ## License
 

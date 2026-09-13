@@ -33,6 +33,7 @@ jobs:
           terraform fmt -check -recursive infrastructure/environments/dev
           terraform fmt -check -recursive infrastructure/modules/github_actions_oidc
           terraform fmt -check -recursive infrastructure/modules/security_observability
+          terraform fmt -check -recursive infrastructure/modules/eks_foundation
 
       - name: Initialize without the remote backend
         working-directory: infrastructure/environments/dev

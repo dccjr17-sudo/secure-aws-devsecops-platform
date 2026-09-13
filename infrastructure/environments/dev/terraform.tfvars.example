@@ -15,3 +15,13 @@ private_subnet_cidrs = ["10.42.10.0/24", "10.42.11.0/24"]
 # their trial and ongoing charges; see docs/runbooks/secrets-audit-detection.md.
 audit_log_retention_days         = 90
 enable_threat_detection_services = false
+
+# Phase 7 is off by default. An EKS control plane, node, NAT gateway, public
+# IPv4 address, and related data transfer are billable while provisioned.
+# Before setting this to true, review docs/runbooks/eks-foundation.md, supply
+# only your trusted public IPv4 CIDR, and review the Terraform plan.
+#
+# enable_eks_foundation            = true
+# eks_kubernetes_version           = "1.35"
+# eks_cluster_public_access_cidrs  = ["203.0.113.10/32"]
+# eks_control_plane_log_retention_days = 30

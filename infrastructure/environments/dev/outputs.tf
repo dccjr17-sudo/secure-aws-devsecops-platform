@@ -57,3 +57,18 @@ output "guardduty_detector_id" {
   description = "GuardDuty detector ID only when enable_threat_detection_services is true."
   value       = module.security_observability.guardduty_detector_id
 }
+
+output "eks_cluster_name" {
+  description = "Phase 7 EKS cluster name when enable_eks_foundation is true."
+  value       = try(module.eks_foundation[0].cluster_name, null)
+}
+
+output "eks_cluster_endpoint" {
+  description = "EKS Kubernetes API endpoint when enable_eks_foundation is true."
+  value       = try(module.eks_foundation[0].cluster_endpoint, null)
+}
+
+output "application_pod_identity_role_arn" {
+  description = "Pod Identity role bound only to the Phase 7 application service account."
+  value       = try(module.eks_foundation[0].application_pod_identity_role_arn, null)
+}
