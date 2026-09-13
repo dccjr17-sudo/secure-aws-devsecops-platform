@@ -6,8 +6,12 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-RUN addgroup -S appgroup \
-    && adduser -S -G appgroup -h /app appuser
+# Keep the runtime identity stable so Kubernetes can enforce non-root execution.
+ARG APP_UID=10001
+ARG APP_GID=10001
+
+RUN addgroup -S -g "${APP_GID}" appgroup \
+    && adduser -S -u "${APP_UID}" -G appgroup -h /app appuser
 
 COPY requirements.txt ./
 

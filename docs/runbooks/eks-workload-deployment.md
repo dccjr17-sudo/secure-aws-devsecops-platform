@@ -21,6 +21,8 @@ cd ../../..
 
 The first deployment intentionally leaves `APP_CONFIG_SECRET_ID` blank. This proves the container, health probes, service account, `restricted` Pod Security profile, internal service, and network policy without attempting to read an empty Secrets Manager container.
 
+The deployment script renders the selected immutable image into the manifests before it sends them to Kubernetes. The application image and manifest both use the explicit non-root UID and GID `10001`; this lets Kubernetes verify the restricted Pod Security setting without relying on an image-defined user name.
+
 ## Validate privately
 
 ```powershell
