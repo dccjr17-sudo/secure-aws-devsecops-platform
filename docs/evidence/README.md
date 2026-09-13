@@ -30,3 +30,4 @@ Before sharing an image, inspect browser tabs, address bars, account menus, brea
 | `phase-4-pipeline-validation.md` | Pull-request checks and OIDC role assumption evidence |
 | `phase-5-security-gates-validation.md` | Security-gate results, dependency remediation, and safe secret-scanner demonstration |
 | `phase-6-detection-validation.md` | Managed-configuration boundary, audit logging, controlled finding, and cost-safe remediation |
+| `phase-7-kubernetes-workload-validation.md` | EKS foundation, private workload rollout, and sanitized endpoint validation |

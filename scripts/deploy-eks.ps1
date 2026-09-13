@@ -41,8 +41,18 @@ aws eks update-kubeconfig `
     --region $AwsRegion `
     --profile $AwsProfile | Out-Null
 
-kubectl apply -k $manifestDirectory
-kubectl set image deployment/secure-platform "secure-platform=$repositoryUrl`:$ImageTag" --namespace application
+# Render the immutable ECR reference before applying. Applying the base
+# placeholder first would briefly create an invalid ReplicaSet.
+$renderedManifest = kubectl kustomize $manifestDirectory
+if ($LASTEXITCODE -ne 0) {
+    throw "Unable to render Kubernetes manifests."
+}
+
+$renderedManifest = $renderedManifest -replace "image: REPLACE_AT_DEPLOYMENT", "image: $repositoryUrl`:$ImageTag"
+$renderedManifest | kubectl apply --filename -
+if ($LASTEXITCODE -ne 0) {
+    throw "Unable to apply Kubernetes manifests."
+}
 
 if ($UseRuntimeSecret) {
     kubectl set env deployment/secure-platform "APP_CONFIG_SECRET_ID=$runtimeSecretName" --namespace application

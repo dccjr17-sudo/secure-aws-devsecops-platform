@@ -21,12 +21,15 @@ spec:
       serviceAccountName: secure-platform
       securityContext:
         runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
         seccompProfile:
           type: RuntimeDefault
       containers:
         - name: secure-platform
-          # scripts/deploy-eks.ps1 replaces this before rollout. Never use a
-          # mutable image tag such as latest in this manifest.
+          # scripts/deploy-eks.ps1 renders this placeholder to an immutable
+          # ECR image reference before Kubernetes receives the manifest.
           image: REPLACE_AT_DEPLOYMENT
           imagePullPolicy: IfNotPresent
           ports:
