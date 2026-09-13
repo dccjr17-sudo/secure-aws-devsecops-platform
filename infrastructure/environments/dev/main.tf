@@ -67,3 +67,30 @@ module "security_observability" {
     Owner              = "Portfolio"
   }
 }
+
+# EKS is deliberately opt-in because a control plane, worker node, NAT
+# gateway, and public IPv4 address can accrue charges while they exist.
+# Set enable_eks_foundation = true only in the ignored local terraform.tfvars
+# after reviewing a plan and selecting a trusted public CIDR for kubectl access.
+module "eks_foundation" {
+  count  = var.enable_eks_foundation ? 1 : 0
+  source = "../../modules/eks_foundation"
+
+  project_name                     = var.project_name
+  environment                      = var.environment
+  kubernetes_version               = var.eks_kubernetes_version
+  vpc_id                           = module.network.vpc_id
+  public_subnet_ids                = module.network.public_subnet_ids
+  private_subnet_ids               = module.network.private_subnet_ids
+  private_route_table_ids          = module.network.private_application_route_table_ids
+  cluster_public_access_cidrs      = var.eks_cluster_public_access_cidrs
+  control_plane_log_retention_days = var.eks_control_plane_log_retention_days
+  runtime_configuration_policy_arn = module.security_observability.runtime_configuration_read_policy_arn
+
+  tags = {
+    DataClassification = "Lab"
+    Owner              = "Portfolio"
+  }
+
+  depends_on = [module.network, module.security_observability]
+}

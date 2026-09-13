@@ -100,3 +100,37 @@ variable "enable_threat_detection_services" {
   type        = bool
   default     = false
 }
+
+variable "enable_eks_foundation" {
+  description = "Explicit opt-in for the Phase 7 EKS control plane, managed node group, NAT gateway, and related paid resources."
+  type        = bool
+  default     = false
+}
+
+variable "eks_kubernetes_version" {
+  description = "EKS Kubernetes minor version. Confirm it remains under standard support before a live apply."
+  type        = string
+  default     = "1.35"
+
+  validation {
+    condition     = can(regex("^1\\.[0-9]+$", var.eks_kubernetes_version))
+    error_message = "eks_kubernetes_version must be a Kubernetes minor version such as 1.35."
+  }
+}
+
+variable "eks_cluster_public_access_cidrs" {
+  description = "Trusted public IPv4 CIDRs allowed to reach the EKS API endpoint. Set only when enabling EKS; do not use 0.0.0.0/0."
+  type        = list(string)
+  default     = []
+}
+
+variable "eks_control_plane_log_retention_days" {
+  description = "CloudWatch retention period for EKS control-plane logs."
+  type        = number
+  default     = 30
+
+  validation {
+    condition     = var.eks_control_plane_log_retention_days >= 7 && var.eks_control_plane_log_retention_days <= 3653
+    error_message = "eks_control_plane_log_retention_days must be between 7 and 3653."
+  }
+}
