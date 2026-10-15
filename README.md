@@ -1,6 +1,6 @@
 # Secure AWS DevSecOps Application Platform
 
-An incrementally built AWS platform that demonstrates secure infrastructure delivery, containerization, CI/CD, detection, and Kubernetes operations. This is a private portfolio project; its documentation explains the decisions and validation evidence without publishing secrets, credentials, or sensitive account details.
+An incrementally built AWS platform that demonstrates secure infrastructure delivery, containerization, CI/CD, detection, and Kubernetes operations. This educational portfolio project documents engineering decisions and lab validation without publishing credentials or sensitive account details. It is not a production deployment.
 
 ## Why this project exists
 
@@ -95,8 +95,10 @@ Use the checklist in [docs/evidence/README.md](docs/evidence/README.md). Commit 
 
 ## Status
 
+**Publication review — October 15, 2026:** the manual **Publish trusted ECR image** workflow is disabled while its output handling is improved. Four historical publishing log archives containing AWS account/resource identifiers were deleted; their run summaries and results were retained. The other reviewed logs and scan artifacts were preserved. This cleanup does not imply that an AWS credential was compromised. Do not re-enable publishing until account IDs, role ARNs, and registry/repository addresses are masked throughout setup, build, push, and cleanup output. Do not rerun the publisher merely to demonstrate this portfolio.
+
 **Current phase:** Phase 7 — Kubernetes workload delivery in progress. Pull requests and image publication require secret, SAST, dependency, Terraform-policy, and container scans before publishing. The gates run without AWS access; only the final publish job can request a short-lived OIDC session. The Phase 6 baseline keeps secret values out of Terraform, records management events in CloudTrail, and used an explicitly opted-in GuardDuty/Security Hub test that was removed after validation. Phase 7 prepares a private EKS platform and attaches the prepared secret-read policy only to the named application workload identity when the user explicitly enables the lab. The application manifests use a restricted namespace, internal service, health probes, a dedicated service account, immutable ECR tags, and a network policy.
 
 ## License
 
-Private portfolio project. Do not make this repository public without reviewing every file, commit, issue, workflow log, and evidence artifact for sensitive information.
+No open-source license has been granted. Public visibility allows portfolio review; it does not by itself grant reuse rights. Review source history, discussions, logs, summaries, and artifacts before future publication changes. Never commit live credentials, Terraform state, account-specific configuration, or unreviewed evidence.
